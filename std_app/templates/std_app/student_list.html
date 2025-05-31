@@ -1,0 +1,34 @@
+
+<p>Add student <a href="{% url 'student_add' %}">here</a></p>
+<p>Logout <a href="{% url 'logout' %}">here</a></p>
+<table>
+    <thead>
+        <tr>
+            <th>FullNames</th>
+            <th>REG No</th>
+            <th>Phone</th>
+            <th>EMAIL</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if students %}
+            
+                {% for i in students %}
+                <tr>
+                    <td>{{ i.first_name }} {{ i.last_name }}</td>
+                    <td>{{ i.reg_number }}</td>
+                    <td>{{ i.phone_number }}</td>
+                    <td>{{ i.email_address }}</td>
+                    <td>
+                        <a href="{% url 'student_update' i.id %}">edit</a>
+                        <a href="{% url 'student_delete' i.id %}">delete</a>
+                    </td>
+                </tr> 
+                {% endfor %}
+            
+        {% else %}    
+         <h5>There are no students here</h5>
+        {% endif %}
+    </tbody>
+</table>
